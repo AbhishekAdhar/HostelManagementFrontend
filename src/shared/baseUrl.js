@@ -1,1 +1,1 @@
-export const baseUrl = 'https://mighty-earth-67348.herokuapp.com/'
+export const baseUrl = 'http://localhost:5000/'
