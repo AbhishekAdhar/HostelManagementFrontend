@@ -10,7 +10,7 @@ class EmployeeUpdateForm extends Component {
             mobile: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.mobileNo,
             gender: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.gender,
             email: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.employeeEmail,
-            address: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.hostel.name,
+            address: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.address,
             designation: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.designation,
             salary: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.salary,
             joinDate: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.joiningDate.split('T')[0],
