@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StudentDashBoard from './StudentDashboard';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, /*Redirect*/ } from 'react-router-dom';
 import ArchitectureV from './StudentArchitecture';
 import StudentProfile from './StudentProfile';
 import StudentLeftNav from './Studentleftnav';

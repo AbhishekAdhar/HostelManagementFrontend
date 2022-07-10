@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DashBoard from './DashboardComponent';
-import { Switch, Route, Redirect, Link} from 'react-router-dom';
+import { Switch, Route, /*Redirect,*/ Link} from 'react-router-dom';
 import LeftNav from './LeftNav';
 import EmployeeView from './EmployeeView';
 import StudentView from './StudentsComponent';
