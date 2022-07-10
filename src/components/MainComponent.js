@@ -73,10 +73,10 @@ class Main extends Component {
             <Route {...rest} render={(props) => (
                 this.props.auth.isAuthenticated && this.props.auth.admin
                     ? <Component {...props} />
-                    : <Redirect to={{
-                        pathname: '/home',
-                        state: { from: props.location }
-                    }} />
+                    // : <Redirect to={{
+                    //     pathname: '/home',
+                    //     state: { from: props.location }
+                    // }} />
             )} />
         );
 
@@ -84,10 +84,10 @@ class Main extends Component {
             <Route {...rest} render={(props) => (
                 this.props.auth.isAuthenticated && !this.props.auth.admin
                     ? <Component {...props} />
-                    : <Redirect to={{
-                        pathname: '/home',
-                        state: { from: props.location }
-                    }} />
+                    // : <Redirect to={{
+                    //     pathname: '/home',
+                    //     state: { from: props.location }
+                    // }} />
             )} />
         );
 

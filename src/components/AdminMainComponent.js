@@ -204,7 +204,7 @@ class Admin extends Component {
               <Route exact path="/admin/updateStudent/:id" component={StudentDetail} />
               <Route exact path="/admin/updateEmployee/:id" component={EmployeeDetail} />
               <Route exact path="/admin/updateSeatAllocation/:id" component={SeatDetail} />
-              <Redirect to="/admin/dashboard" />
+              {/* <Redirect to="/admin/dashboard" /> */}
             </Switch>
 
           </div>
