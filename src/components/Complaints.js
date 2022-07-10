@@ -32,7 +32,7 @@ export default function Complaints({ complaints, isLoading, errMess }) {
       },
       {
         label: 'Complaint',
-        field: 'complaint',
+        field: 'description',
         width: 50,
       },
 

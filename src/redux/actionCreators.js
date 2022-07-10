@@ -37,7 +37,7 @@ export const updateStudent = (student) => (dispatch) => {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': bearer
+            'authorization': bearer
         },
         body: JSON.stringify(newStudent),
     })
@@ -72,7 +72,7 @@ export const fetchStudents = () => (dispatch) => {
     return fetch(baseUrl + 'students', {
         headers: {
             'method': 'GET',
-            'Authorization': bearer
+            'authorization': bearer
         },
     })
         .then(response => {
@@ -101,7 +101,7 @@ export const deleteStudent = (studentId) => (dispatch) => {
     return fetch(baseUrl + 'students/' + studentId, {
         method: "DELETE",
         headers: {
-            'Authorization': bearer
+            'authorization': bearer
         }
     })
         .then(response => {
@@ -149,7 +149,7 @@ export const updateEmployee = (employee) => (dispatch) => {
         email: employee.email,
         mobileNo: employee.mobile,
         gender: employee.gender,
-        employeeType: employee.type,
+        salary: employee.salary,
         designation: employee.designation,
         joiningDate: employee.joinDate,
         address: employee.address,
@@ -162,7 +162,7 @@ export const updateEmployee = (employee) => (dispatch) => {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': bearer
+            'authorization': bearer
         },
         body: JSON.stringify(newemployee),
     })
@@ -192,7 +192,7 @@ export const postEmployee = (employee) => (dispatch) => {
 
     const newEmployee = {
         employeeName: employee.name,
-        employeeType: employee.type,
+        salary: employee.salary,
         email: employee.email,
         mobileNo: employee.mobile,
         gender: employee.gender,
@@ -210,7 +210,7 @@ export const postEmployee = (employee) => (dispatch) => {
         body: JSON.stringify(newEmployee),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': bearer
+            'authorization': bearer
         }
     })
         .then(response => {
@@ -243,7 +243,7 @@ export const fetchEmployees = () => (dispatch) => {
     return fetch(baseUrl + 'employees', {
         headers: {
             'method': 'GET',
-            'Authorization': bearer
+            'authorization': bearer
         },
     })
         .then(response => {
@@ -272,7 +272,7 @@ export const deleteEmployee = (employeeId) => (dispatch) => {
     return fetch(baseUrl + 'employees/' + employeeId, {
         method: "DELETE",
         headers: {
-            'Authorization': bearer
+            'authorization': bearer
         }
     })
         .then(response => {
@@ -326,7 +326,7 @@ export const postNotice = (notice) => (dispatch) => {
         body: JSON.stringify(newNotice),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': bearer
+            'authorization': bearer
         }
     })
         .then(response => {
@@ -359,7 +359,7 @@ export const fetchNotices = () => (dispatch) => {
     return fetch(baseUrl + 'notices', {
         headers: {
             'method': 'GET',
-            'Authorization': bearer
+            'authorization': bearer
         },
     })
         .then(response => {
@@ -387,7 +387,7 @@ export const deleteNotice = (noticeId) => (dispatch) => {
     return fetch(baseUrl + 'notices/' + noticeId, {
         method: "DELETE",
         headers: {
-            'Authorization': bearer
+            'authorization': bearer
         }
     })
         .then(response => {
@@ -464,7 +464,6 @@ export const loginUser = (creds) => (dispatch) => {
                 dispatch(fetchStudents());
                 dispatch(fetchEmployees());
                 dispatch(fetchNotices());
-                dispatch(fetchNotices());
                 dispatch(fetchArchitecture());
                 dispatch(fetchComplaints());
                 dispatch(receiveLogin(response));
@@ -515,65 +514,25 @@ export const architectureFailed = (errmess) => ({
     payload: errmess
 });
 
-export const architectureSuccess = (architecture) => ({
+export const architectureSuccess = (architectures) => ({
     type: ActionTypes.ARCHITECTURE_SUCCESS,
-    payload: architecture
+    payload: architectures
 });
 
-export const addArchitecture = (architecture) => ({
+export const addArchitecture = (architectures) => ({
     type: ActionTypes.ADD_ARCHITECTURE,
-    payload: architecture
+    payload: architectures
 });
-
-export const postArchitecture = (architecture) => (dispatch) => {
-
-    const newArchitecture = {
-        room: architecture.room,
-        countStudent: architecture.countStudent
-    }
-    console.log('Architecture: ', newArchitecture);
-
-    const bearer = 'Bearer ' + localStorage.getItem('token');
-
-    return fetch(baseUrl + 'architecture', {
-        method: 'POST',
-        body: JSON.stringify(newArchitecture),
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': bearer
-        }
-    })
-        .then(response => {
-            if (response.ok) {
-                return response;
-            }
-            else {
-                var error = new Error('Error ' + response.status + ': ' + response.statusText);
-                error.response = response;
-                throw error;
-            }
-        },
-            error => {
-                var errmess = new Error(error.message);
-                throw errmess;
-            })
-        .then(response => response.json())
-        .then(response => dispatch(addArchitecture(response)))
-        .catch(error => {
-            console.log('Post Architecture ', error.message);
-            alert('Architecture could not be added\nError: ' + error.message);
-        })
-}
 
 export const fetchArchitecture = () => (dispatch) => {
     dispatch(architectureLoading(true));
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
-    return fetch(baseUrl + 'architecture', {
+    return fetch(baseUrl + 'rooms', {
         headers: {
             'method': 'GET',
-            'Authorization': bearer
+            'authorization': bearer
         },
     })
         .then(response => {
@@ -591,7 +550,7 @@ export const fetchArchitecture = () => (dispatch) => {
                 throw errmess;
             })
         .then(response => response.json())
-        .then(architecture => dispatch(architectureSuccess(architecture)))
+        .then(architectures => dispatch(architectureSuccess(architectures)))
         .catch(error => dispatch(architectureFailed(error.message)));
 }
 
@@ -631,7 +590,7 @@ export const postSeatallocation = (seats) => (dispatch) => {
         body: JSON.stringify(newSeatAllocation),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': bearer
+            'authorization': bearer
         }
     })
         .then(response => {
@@ -670,7 +629,7 @@ export const updateSeatAllocation = (seat) => (dispatch) => {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': bearer
+            'authorization': bearer
         },
         body: JSON.stringify(newSeat),
     })
@@ -703,7 +662,7 @@ export const deleteSeatAllocation = (seatId) => (dispatch) => {
     return fetch(baseUrl + 'seats/' + seatId, {
         method: "DELETE",
         headers: {
-            'Authorization': bearer
+            'authorization': bearer
         }
     })
         .then(response => {
@@ -731,7 +690,7 @@ export const fetchSeatallocation = () => (dispatch) => {
     return fetch(baseUrl + 'seats', {
         headers: {
             'method': 'GET',
-            'Authorization': bearer
+            'authorization': bearer
         },
     })
         .then(response => {
@@ -776,7 +735,7 @@ export const postComplaint = (complaint) => (dispatch) => {
 
     const newComplaint = {
         title: complaint.title,
-        complaint: complaint.description,
+        description: complaint.description,
         eid: complaint.eid
     }
     console.log('Complaint: ', newComplaint);
@@ -788,7 +747,7 @@ export const postComplaint = (complaint) => (dispatch) => {
         body: JSON.stringify(newComplaint),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': bearer
+            'authorization': bearer
         }
     })
         .then(response => {
@@ -821,7 +780,7 @@ export const fetchComplaints = () => (dispatch) => {
     return fetch(baseUrl + 'complaints', {
         headers: {
             'method': 'GET',
-            'Authorization': bearer
+            'authorization': bearer
         },
     })
         .then(response => {
@@ -850,7 +809,7 @@ export const deleteComplaint = (complaintId) => (dispatch) => {
     return fetch(baseUrl + 'complaints/' + complaintId, {
         method: "DELETE",
         headers: {
-            'Authorization': bearer
+            'authorization': bearer
         }
     })
         .then(response => {

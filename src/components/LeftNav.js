@@ -118,12 +118,8 @@ export default class LeftNav extends Component {
                 <Link className="nav-link" to="/admin/NoticeBoard"> <i className="fa fa-newspaper-o" aria-hidden="true"></i> Notice Board</Link>
               </NavItem>
               <NavItem>
-                <Link className="nav-link" to="/admin/Architecture"><i className="fa fa-server" aria-hidden="true"></i>Architecture</Link>
-              </NavItem>
-              <NavItem>
                 <Link className="nav-link" to="/admin/Complaints"><i className="fa fa-book" aria-hidden="true"></i>Complaints</Link>
               </NavItem>
-
             </Nav>
           </Collapse>
         </Navbar>

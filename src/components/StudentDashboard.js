@@ -3,14 +3,13 @@ import { Card, CardBody, CardHeader, Alert, CardFooter } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
-class DashBoard extends Component {
+class StudentDashBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
             employee: '',
             student: '',
-            rooms: '',
-            meals: ''
+            rooms: ''
         }
     }
     componentDidMount() {
@@ -29,7 +28,7 @@ class DashBoard extends Component {
 
             this.setState({
                 employee: "/student/employeeView",
-                student: "/student/rooms",
+                student: "/student/studentView",
                 meals: "/student/mealview",
                 rooms: "/student/rooms"
             })
@@ -77,7 +76,7 @@ class DashBoard extends Component {
                                 </div>
 
                             </CardHeader>
-                            <CardFooter><Link to={this.state.student}>Details</Link></CardFooter>
+                            <CardFooter>-</CardFooter>
                         </Card>
                     </div>
                     <div className="col-lg-4 col-sm-6 mt-3">
@@ -96,22 +95,6 @@ class DashBoard extends Component {
                             <CardFooter><Link to={this.state.rooms}>Details</Link></CardFooter>
                         </Card>
                     </div>
-                    {/* <div className="col-lg-3 col-sm-6 mt-3">
-                        <Card>
-                            <CardHeader className="dashCard">
-                                <div className="row">
-                                    <span className="col-7 fa fa-utensils fa-4x"></span>
-                                </div>
-                                <div className="mt-3">
-                                    <div>
-                                        <p>Today's Meals</p>
-                                    </div>
-                                </div>
-
-                            </CardHeader>
-                            <CardFooter><Link to={this.state.meals}>Details</Link></CardFooter>
-                        </Card>
-                    </div> */}
                 </div>
                 <div className="row mt-2 mt-3">
                     <div className="col-12">
@@ -141,4 +124,4 @@ class DashBoard extends Component {
     }
 }
 
-export default DashBoard;
+export default StudentDashBoard;

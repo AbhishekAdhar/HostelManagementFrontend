@@ -34,6 +34,11 @@ export default class StudentLeftNav extends Component {
                 </Link>
               </NavItem>
               <NavItem>
+                <Link className="nav-link" to="/student/ChangePassword">
+                  <i className="fa fa-book" aria-hidden="true"></i>Change Password
+                </Link>
+              </NavItem>
+              <NavItem>
                 <Link className="nav-link" to="/student/NoticeBoard">
                   {" "}
                   <i className="fa fa-newspaper-o" aria-hidden="true"></i>{" "}

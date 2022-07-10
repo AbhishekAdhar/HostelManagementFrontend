@@ -16,12 +16,7 @@ export default function ArchitectureV({ architectures, isLoading, errMess }) {
         width: 150,
       }
     ],
-    rows: [
-      {
-        room: architectures.room,
-        countStudent: architectures.countStudent
-      }
-    ],
+    rows: architectures
   });
   if (isLoading) {
     return (<Loading />);

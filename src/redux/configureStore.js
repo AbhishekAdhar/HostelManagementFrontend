@@ -14,7 +14,7 @@ export const ConfigureStore = () => {
             students: Students,
             notices: Notices,
             employees: Employees,
-            architecture: Architecture,
+            architectures: Architecture,
             seatAllocation: SeatAllocation,
             complaints: Complaints,
             auth: Auth,

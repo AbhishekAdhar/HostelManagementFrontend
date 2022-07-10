@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
 import Registration from "./Registration.js";
 import {
-    postArchitecture, postComplaint, postEmployee, postNotice,
+    postComplaint, postEmployee, postNotice,
     postSeatallocation, fetchArchitecture, fetchComplaints, fetchEmployees,
      fetchNotices,  fetchSeatallocation, fetchStudents, deleteComplaint, deleteSeatAllocation,
     deleteEmployee, deleteNotice, deleteStudent, logoutUser, loginUser, updateStudent, updateEmployee, updateSeatAllocation,
@@ -19,7 +19,6 @@ import {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    postArchitecture: (architecture) => dispatch(postArchitecture(architecture)),
     postComplaint: (complaint) => dispatch(postComplaint(complaint)),
     postEmployee: (employee) => dispatch(postEmployee(employee)),
     postNotice: (notice) => dispatch(postNotice(notice)),
@@ -48,7 +47,7 @@ const mapStateToProps = (state) => {
         students: state.students,
         notices: state.notices,
         employees: state.employees,
-        architecture: state.architecture,
+        architectures: state.architectures,
         seatAllocation: state.seatAllocation,
         complaints: state.complaints,
         auth: state.auth,
@@ -104,17 +103,17 @@ class Main extends Component {
                     <Switch>
                         <Route path="/home" component={() => <Home />} />
                         <Route path="/login" component={() => <LoginForm auth={this.props.auth} loginUser={this.props.loginUser} />} />
-                        <AdminRoute path="/admin" component={() => <Admin auth={this.props.auth} postNotice={this.props.postNotice} postArchitecture={this.props.postArchitecture} updateStudent={this.props.updateStudent} updateEmployee={this.props.updateEmployee}
+                        <AdminRoute path="/admin" component={() => <Admin auth={this.props.auth} postNotice={this.props.postNotice} updateStudent={this.props.updateStudent} updateEmployee={this.props.updateEmployee}
                             employees={this.props.employees} notices={this.props.notices} students={this.props.students} postStudent={this.props.postStudent}  deleteNotice={this.props.deleteNotice} deleteComplaint={this.props.deleteComplaint}
                             deleteStudent={this.props.deleteStudent} deleteSeatAllocation={this.props.deleteSeatAllocation} fetchStudents={this.props.fetchStudents}  complaints={this.props.complaints} postEmployee={this.props.postEmployee} deleteEmployee={this.props.deleteEmployee}
-                            fetchEmployees={this.props.fetchEmployees} seatAllocation={this.props.seatAllocation} architecture={this.props.architecture} 
+                            fetchEmployees={this.props.fetchEmployees} seatAllocation={this.props.seatAllocation} architectures={this.props.architectures} 
                             updateSeatAllocation={this.props.updateSeatAllocation} postSeatallocation={this.props.postSeatallocation} />} />
                         <Route path="/contactus" component={Contact} />
                         <Route path="/registration" component={Registration} />
 
                         <StudentRoute path="/student" component={() => <Student auth={this.props.auth} postComplaint={this.props.postComplaint} complaints={this.props.complaints}
                             employees={this.props.employees} notices={this.props.notices} students={this.props.students} 
-                            seatAllocation={this.props.seatAllocation} architecture={this.props.architecture} />} />
+                            seatAllocation={this.props.seatAllocation} architectures={this.props.architectures} />} />
                         <Redirect to="/home" />
                     </Switch>
                 </div>

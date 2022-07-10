@@ -31,7 +31,7 @@ export default function ComplaintsView({ complaints }) {
       },
       {
         label: 'Complaint',
-        field: 'complaint',
+        field: 'description',
         width: 250,
       },
 

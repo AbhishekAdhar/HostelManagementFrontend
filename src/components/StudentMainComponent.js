@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DashBoard from './DashboardComponent';
+import StudentDashBoard from './StudentDashboard';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import ArchitectureV from './StudentArchitecture';
 import StudentProfile from './StudentProfile';
@@ -8,6 +8,7 @@ import NoticeV from './StudentNoticeV';
 import SubmitComplaint from './SubmitComplaint';
 import StudentView from './StudentsComponentView';
 import EmployeeView from './StudentEmployeeView';
+import ChangePassword from './password';
 
 class Student extends Component {
   constructor(props) {
@@ -16,9 +17,9 @@ class Student extends Component {
       Students: [],
       Employees: [],
       Notices: [],
-      Architecture: [],
-      Seats: [],
-      complaints: []
+      Architectures: [],
+      // Seats: [],
+      Complaints: []
     }
   }
 
@@ -43,11 +44,11 @@ class Student extends Component {
       employees.push({
         name: element.employeeName,
         gender: element.gender,
-        employeetype: element.employeeType,
+        eid: element.eid,
         designation: element.designation,
         mobile: element.mobileNo,
-        date: element.joiningDate,
-        address: element.hostel.name
+        date: element.joiningDate.split('T')[0],
+        address: element.address
       })
     });
     const employeeList = this.state.Students.concat(employees);
@@ -62,34 +63,33 @@ class Student extends Component {
     });
     const noticeList = this.state.Notices.concat(notices);
 
-
-    let seatAllocation = [];
-    this.props.seatAllocation.seatAllocation.forEach(element => {
-      seatAllocation.push({
-        name: element.name,
-        block: element.block,
-        room: element.room,
-        rent: element.monthlyRent,
-      })
-    });
-    const seatAllocationList = this.state.Seats.concat(seatAllocation);
-
     let complaints = [];
     this.props.complaints.complaints.forEach(element => {
       complaints.push({
-        name: element.studentName.username,
+        name: element.name,
+        sid: element.sid,
         title: element.title,
-        complaint: element.complaint
+        description: element.description,
+        eid : element.eid
       })
     });
-    const complaintsList = this.state.complaints.concat(complaints);
+    const complaintsList = this.state.Complaints.concat(complaints);
+
+    let architectures = [];
+    this.props.architectures.architectures.forEach(element => {
+      architectures.push({
+        room: element.room,
+        countStudent: element.countStudent,
+      })
+    });
+    const architectureList = this.state.Architectures.concat(architectures);
 
     this.setState({
       Students: studentlist,
       Employees: employeeList,
       Notices: noticeList,
-      Seats: seatAllocationList,
-      complaints: complaintsList
+      Architectures : architectureList,
+      Complaints: complaintsList
     });
   }
 
@@ -102,19 +102,19 @@ class Student extends Component {
           </div>
           <div className="col-md-9">
             <Switch>
-              <Route path="/student/dashboard" component={() => <DashBoard architectures={this.props.architecture.architecture}
+              <Route path="/student/dashboard" component={() => <StudentDashBoard architectures={this.props.architectures}
                 employees={this.props.employees}
                 students={this.props.students}
                 auth={this.props.auth}
                 notices={this.props.notices.notices} />} />
               <Route exact path="/student/profile" component={() => <StudentProfile students={this.props.students} auth={this.props.auth} />} />
-
               <Route exact path="/student/Noticeboard" component={() => <NoticeV notices={this.state.Notices} isLoading={this.props.notices.isLoading} errMess={this.props.notices.errMess} />} />
-              <Route exact path="/student/Architecture" component={() => <ArchitectureV architectures={this.props.architecture.architecture} isLoading={this.props.architecture.isLoading} errMess={this.props.architecture.errMess} />} />
-              <Route exact path="/student/Complaints" component={() => <SubmitComplaint postComplaint={this.props.postComplaint} auth={this.props.auth} complaints={this.state.complaints} />} />
-              <Route exact path="/student/studentView" component={() => <StudentView students={this.state.Students} isLoading={this.props.students.isLoading} errMess={this.props.students.errMess} />} />
-              <Route exact path="/student/rooms" component={() => <ArchitectureV architectures={this.props.architecture.architecture} isLoading={this.props.architecture.isLoading} errMess={this.props.architecture.errMess} />} />
+              <Route exact path="/student/Architecture" component={() => <ArchitectureV architectures={this.state.Architectures} isLoading={this.props.architectures.isLoading} errMess={this.props.architectures.errMess} />} />
+              <Route exact path="/student/Complaints" component={() => <SubmitComplaint  auth={this.props.auth} complaints={this.state.Complaints} isLoading={this.props.complaints.isLoading} errMess={this.props.complaints.errMess} postComplaint={this.props.postComplaint} />} />
+              <Route exact path="/student/studentView" component={() => <StudentView students={this.state.Students}  />} />
+              <Route exact path="/student/rooms" component={() => <ArchitectureV architectures={this.state.Architectures} isLoading={this.props.architectures.isLoading} errMess={this.props.architectures.errMess} />} />
               <Route exact path="/student/employeeView" component={() => <EmployeeView employees={this.state.Employees} isLoading={this.props.employees.isLoading} errMess={this.props.employees.errMess} />} />
+              <Route exact path="/student/ChangePassword" component={ChangePassword} />
               <Redirect to="/student/dashboard" />
             </Switch>
 

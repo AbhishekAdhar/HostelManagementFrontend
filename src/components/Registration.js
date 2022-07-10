@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { baseUrl } from "../shared/baseUrl";
 function Register() {
   const RegistrationHandler = (event) => {
     event.preventDefault();
@@ -42,7 +43,7 @@ function Register() {
 
     };
     axios
-      .post("http://localhost:5000/students", data)
+      .post(baseUrl + "students", data)
       .then((response) => {
         console.log(response);
         // event.target.reset(null);

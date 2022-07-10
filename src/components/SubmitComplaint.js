@@ -43,11 +43,11 @@ class SubmitComplaint extends Component {
             eid: '',
             description: ''
         }
-        if (this.state.touched.title && title.length < 10)
+        if (this.state.touched.title && title.length < 5)
             errors.title = 'Subject should contain a minimum of 10 characters';
-        if (this.state.touched.eid && eid.length < 10)
+        if (this.state.touched.eid && eid.length < 3)
             errors.eid = 'Subject should contain a minimum of 10 characters';
-        if (this.state.touched.description && description.length < 30)
+        if (this.state.touched.description && description.length < 20)
             errors.description = 'Subject should contain a minimum of 30 characters';
 
         return errors;
@@ -55,8 +55,8 @@ class SubmitComplaint extends Component {
     }
 
     render() {
-        const complaint = this.props.complaints.filter((element) => element.name === this.props.auth.user.username)
-        const errors = this.validate(this.state.title, this.state.description);
+        const complaint = this.props.complaints.filter((element) => element.sid === this.props.auth.user.username)
+        const errors = this.validate(this.state.title, this.state.eid, this.state.description);
         return (
             <div>
                 <div className="row">
@@ -81,7 +81,7 @@ class SubmitComplaint extends Component {
                                 <FormGroup>
                                     <Label for="eid">Employee ID</Label>
                                     <Input required onBlur={this.handleBlur('eid')} onChange={this.handleInputChange} type="text"
-                                        name="eid" id="eid" placeholder="eid" value={this.state.title}
+                                        name="eid" id="eid" placeholder="Employee Id" value={this.state.eid}
                                         valid={errors.eid === ''} invalid={errors.eid !== ''} />
                                     <FormFeedback>{errors.eid}</FormFeedback>
                                 </FormGroup>

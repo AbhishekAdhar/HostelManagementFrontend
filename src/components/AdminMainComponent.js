@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import DashBoard from './DashboardComponent';
-import { Switch, Route, Redirect, Link } from 'react-router-dom';
+import { Switch, Route, Redirect, Link} from 'react-router-dom';
 import LeftNav from './LeftNav';
-import Architecture from './ArchitectureComponent'
 import EmployeeView from './EmployeeView';
 import StudentView from './StudentsComponent';
 import NoticeBoard from './NoticeBoard'
 import AddEmployee from './AddEmployeeComponent';
 import Seat from './SeatComponent';
 import Complaints from './Complaints';
-import ArchitectureView from './ArchitectureView';
+import ArchitectureV from './StudentArchitecture';
 import StudentUpdateForm from './StudentUpdateForm';
 import EmployeeUpdateForm from './EmployeeUpdateForm';
 import SeatAllocationUpdateForm from './SeatAllocationUpdateForm';
@@ -27,10 +26,9 @@ class Admin extends Component {
       Students: [],
       Employees: [],
       Notices: [],
-      Architecture: [],
+      Architectures: [],
       Seats: [],
-      Complaints: [],
-      MessBills: []
+      Complaints: []
     };
   }
 
@@ -42,6 +40,7 @@ class Admin extends Component {
         students.push({
           sid: element.sid,
           name: element.studentName,
+          room : element.room,
           mobile: element.mobileNo,
           program: element.branch,
           gMob: element.fatherMobile,
@@ -65,11 +64,11 @@ class Admin extends Component {
         employees.push({
           name: element.employeeName,
           gender: element.gender,
-          employeetype: element.employeeType,
+          email: element.email,
           designation: element.designation,
           mobile: element.mobileNo,
           date: element.joiningDate.split('T')[0],
-          address: element.hostel.name,
+          address: element.address,
           actions: <div>
             <Link className="fa fa-pencil-alt edit mr-2" to={`/admin/updateEmployee/${element._id}`}></Link>
             <i className="fa fa-trash-alt delete" onClick={() => {
@@ -117,9 +116,11 @@ class Admin extends Component {
     let complaints = [];
     this.props.complaints.complaints.forEach(element => {
       complaints.push({
-        name: element.studentName.username,
+        name: element.name,
+        sid : element.sid,
         title: element.title,
-        complaint: element.complaint,
+        eid: element.eid,
+        description: element.description,
         actions: <div>
           <i className="fa fa-trash-alt delete" onClick={() => {
             if (window.confirm("Are u sure u want to delete ?"))
@@ -130,12 +131,22 @@ class Admin extends Component {
     });
     const complaintsList = this.state.Complaints.concat(complaints);
 
+    let architectures = [];
+    this.props.architectures.architectures.forEach(element => {
+      architectures.push({
+        room: element.room,
+        countStudent: element.countStudent
+      })
+    });
+    const architectureList = this.state.Architectures.concat(architectures);
+
     this.setState({
       Students: studentlist,
       Employees: employeeList,
       Notices: noticeList,
       Seats: seatAllocationList,
       Complaints: complaintsList,
+      Architectures: architectureList
     });
   }
 
@@ -180,15 +191,14 @@ class Admin extends Component {
           <div className="col-md-9">
 
             <Switch>
-              <Route path="/admin/dashboard" component={() => <DashBoard architectures={this.props.architecture.architecture} students={this.props.students} employees={this.props.employees} auth={this.props.auth} notices={this.props.notices.notices} />} />
+              <Route path="/admin/dashboard" component={() => <DashBoard architectures={this.props.architectures} students={this.props.students} employees={this.props.employees} auth={this.props.auth} notices={this.props.notices.notices} />} />
               <Route exact path="/admin/students" component={() => <StudentView students={this.state.Students} />} />
-              <Route exact path="/admin/rooms" component={() => <ArchitectureView architectures={this.props.architecture.architecture} />} />
+              <Route exact path="/admin/rooms" component={() => <ArchitectureV architectures={this.state.Architectures} isLoading={this.props.architectures.isLoading} errMess={this.props.architectures.errMess} />} />
               <Route exact path="/admin/employees" component={() => <EmployeeView employees={this.state.Employees} />} />
               <Route exact path="/admin/EmployeeManage/addnew" component={() => <AddEmployee postEmployee={this.props.postEmployee} />} />
               <Route exact path="/admin/StudentManage/view" component={() => <StudentView students={this.state.Students} isLoading={this.props.students.isLoading} errMess={this.props.students.errMess} />} />
               <Route exact path="/admin/EmployeeManage/view" component={() => <EmployeeView employees={this.state.Employees} isLoading={this.props.employees.isLoading} errMess={this.props.employees.errMess} />} />
               <Route exact path="/admin/NoticeBoard" component={() => <NoticeBoard notices={this.state.Notices} postNotice={this.props.postNotice} isLoading={this.props.notices.isLoading} errMess={this.props.notices.errMess} />} />
-              <Route exact path="/admin/Architecture" component={() => <Architecture postArchitecture={this.props.postArchitecture} architecture={this.props.architecture.architecture} isLoading={this.props.architecture.isLoading} errMess={this.props.architecture.errMess} />} />
               <Route exact path="/admin/Complaints" component={() => <Complaints complaints={this.state.Complaints} isLoading={this.props.complaints.isLoading} errMess={this.props.complaints.errMess} />} />
               <Route exact path="/admin/StudentManage/seatallocation" component={() => <Seat seats={this.state.Seats} isLoading={this.props.seatAllocation.isLoading} errMess={this.props.seatAllocation.errMess} postSeatallocation={this.props.postSeatallocation} />} />
               <Route exact path="/admin/updateStudent/:id" component={StudentDetail} />
