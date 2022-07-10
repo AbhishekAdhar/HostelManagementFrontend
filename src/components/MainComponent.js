@@ -114,7 +114,7 @@ class Main extends Component {
                         <StudentRoute path="/student" component={() => <Student auth={this.props.auth} postComplaint={this.props.postComplaint} complaints={this.props.complaints}
                             employees={this.props.employees} notices={this.props.notices} students={this.props.students} 
                             seatAllocation={this.props.seatAllocation} architectures={this.props.architectures} />} />
-                        <Redirect to="/home" />
+                        {/* <Redirect to="/home" /> */}
                     </Switch>
                 </div>
                 <Footer />
