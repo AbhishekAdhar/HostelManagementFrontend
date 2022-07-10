@@ -25,9 +25,10 @@ body{
     width: 25%;
 }
 .pec{
-    padding-top: 1.5%;
-    height: 15%;
-    width: 15%;
+    padding-top: 2%;
+    padding-right: 2%;
+    height: 11.5%;
+    width: 11.5%;
 }
 
 @media (max-width: 768px){
@@ -139,7 +140,8 @@ hr{
 }
 
 .copyright{
-    font-size: 1.2rem;
+    font-size: 0.8rem;
+    color: white;
     font-weight: 500;
 }
 

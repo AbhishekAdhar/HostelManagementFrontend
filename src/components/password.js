@@ -41,7 +41,7 @@ function ChangePassword() {
             <div className="form-group col-md-6">
               <label>Old Password:</label>
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 name="oldPass"
                 placeholder="old password"

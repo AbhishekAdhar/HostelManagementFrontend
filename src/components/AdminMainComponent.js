@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DashBoard from './DashboardComponent';
-import { Switch, Route, /*Redirect,*/ Link} from 'react-router-dom';
+import { Switch, Route, Redirect, Link} from 'react-router-dom';
 import LeftNav from './LeftNav';
 import EmployeeView from './EmployeeView';
 import StudentView from './StudentsComponent';
@@ -63,12 +63,11 @@ class Admin extends Component {
       this.props.employees.employees.forEach(element => {
         employees.push({
           name: element.employeeName,
-          gender: element.gender,
-          email: element.email,
-          designation: element.designation,
-          mobile: element.mobileNo,
-          date: element.joiningDate.split('T')[0],
-          address: element.address,
+        gender: element.gender,
+        eid: element.eid,
+        designation: element.designation,
+        mobile: element.mobileNo,
+        address: element.address,
           actions: <div>
             <Link className="fa fa-pencil-alt edit mr-2" to={`/admin/updateEmployee/${element._id}`}></Link>
             <i className="fa fa-trash-alt delete" onClick={() => {
@@ -204,7 +203,7 @@ class Admin extends Component {
               <Route exact path="/admin/updateStudent/:id" component={StudentDetail} />
               <Route exact path="/admin/updateEmployee/:id" component={EmployeeDetail} />
               <Route exact path="/admin/updateSeatAllocation/:id" component={SeatDetail} />
-              {/* <Redirect to="/admin/dashboard" /> */}
+              <Redirect to="/admin/dashboard" />
             </Switch>
 
           </div>

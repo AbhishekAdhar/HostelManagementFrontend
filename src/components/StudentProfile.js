@@ -39,22 +39,22 @@ class StudentProfile extends Component {
                             <div className="card-body">
                                 <div className="row d-flex justify-content-start">
 
-                                    <h5 className="card-title col-sm-3 ">Name</h5>
+                                    <h5 className="card-title col-sm-3 ">Name: </h5>
                                     <h5 className="card-title col-sm-3">{student !== null && student.studentName}</h5>
 
 
-                                    <h5 className="card-title col-sm-3">Father's Name</h5>
+                                    <h5 className="card-title col-sm-3">Father's Name: </h5>
                                     <h5 className="card-title col-sm-3">{student !== null && student.fatherName}</h5>
 
                                 </div>
 
                                 <div className="row d-flex justify-content-start">
 
-                                    <h5 className="card-title col-sm-3 ">Student ID</h5>
+                                    <h5 className="card-title col-sm-3 ">Student ID: </h5>
                                     <h5 className="card-title col-sm-3">{student !== null && student.sid}</h5>
 
 
-                                    <h5 className="card-title col-sm-3 ">Nationality</h5>
+                                    <h5 className="card-title col-sm-3 ">Nationality: </h5>
                                     <h5 className="card-title col-sm-3">{student !== null && student.nationality}</h5>
 
 
@@ -62,22 +62,22 @@ class StudentProfile extends Component {
 
                                 <div className="row d-flex justify-content-start">
 
-                                    <h5 className="card-title col-sm-3 ">Date of Birth</h5>
+                                    <h5 className="card-title col-sm-3 ">DOB: </h5>
                                     <h5 className="card-title col-sm-3">{student !== null && student.dob.split('T')[0].split("-")[2] + "-" + student.dob.split('T')[0].split("-")[1] + "-" + student.dob.split('T')[0].split("-")[0]}</h5>
 
 
-                                    <h5 className="card-title col-sm-3">Branch</h5>
+                                    <h5 className="card-title col-sm-3">Branch: </h5>
                                     <h5 className="card-title col-sm-3">{student !== null && student.branch}</h5>
 
                                 </div>
 
                                 <div className="row d-flex justify-content-start">
 
-                                    <h5 className="card-title col-sm-3">Email</h5>
+                                    <h5 className="card-title col-sm-3">Email: </h5>
                                     <h5 className="card-title col-sm-3">{student !== null && student.email}</h5>
 
 
-                                    <h5 className="card-title col-sm-3">Address</h5>
+                                    <h5 className="card-title col-sm-3">Address: </h5>
                                     <h5 className="card-title col-sm-3">{student !== null && student.address}</h5>
 
                                 </div>

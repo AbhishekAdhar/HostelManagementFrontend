@@ -73,15 +73,15 @@ class AddEmployee extends Component {
             errors.email = 'Employee email should contain a minimum of 3 characters';
         if (this.state.touched.gender && gender.length < 3)
             errors.gender = 'Please select the gender';
-        if (this.state.touched.address && address.length < 20)
-            errors.address = 'Address should contain a minimum of 20 characters';
+        if (this.state.touched.address && address.length < 10)
+            errors.address = 'Address should contain a minimum of 10 characters';
         if (this.state.touched.designation && designation.length < 3)
             errors.designation = 'Designation should contain a minimum of 3 characters';
         if (this.state.touched.salary && salary.length === 0)
             errors.salary = 'Please Enter the salary';
         if (this.state.touched.joinDate && joinDate.length === 0)
             errors.joinDate = 'Specify Joining Date';
-        if (this.state.touched.eid && eid.length < 4)
+        if (this.state.touched.eid && eid.length < 3)
             errors.eid = 'Enter a valid Employee Id';
 
         return errors;

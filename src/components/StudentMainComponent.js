@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StudentDashBoard from './StudentDashboard';
-import { Switch, Route, /*Redirect*/ } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import ArchitectureV from './StudentArchitecture';
 import StudentProfile from './StudentProfile';
 import StudentLeftNav from './Studentleftnav';
@@ -115,7 +115,7 @@ class Student extends Component {
               <Route exact path="/student/rooms" component={() => <ArchitectureV architectures={this.state.Architectures} isLoading={this.props.architectures.isLoading} errMess={this.props.architectures.errMess} />} />
               <Route exact path="/student/employeeView" component={() => <EmployeeView employees={this.state.Employees} isLoading={this.props.employees.isLoading} errMess={this.props.employees.errMess} />} />
               <Route exact path="/student/ChangePassword" component={ChangePassword} />
-              {/* <Redirect to="/student/dashboard" /> */}
+              <Redirect to="/student/dashboard" />
             </Switch>
 
           </div>

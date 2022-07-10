@@ -9,7 +9,7 @@ class EmployeeUpdateForm extends Component {
             name: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.employeeName,
             mobile: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.mobileNo,
             gender: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.gender,
-            email: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.employeeEmail,
+            email: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.email,
             address: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.address,
             designation: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.designation,
             salary: (typeof this.props.employee === 'undefined') ? '' : this.props.employee.salary,
@@ -132,7 +132,7 @@ class EmployeeUpdateForm extends Component {
                             <Col md={4}>
                                 <FormGroup>
                                     <Label for="email">Email</Label>
-                                    <Input required type="email" name="email" id="email" value={this.state.email} placeholder="Email"
+                                    <Input required type="email" name="email" id="email" value={this.state.email} placeholder="Email" className="form-control"
                                         onBlur={this.handleBlur('email')} onChange={this.handleInputChange}
                                         valid={errors.email === ''} invalid={errors.email !== ''} />
                                     <FormFeedback>{errors.email}</FormFeedback>

@@ -9,7 +9,7 @@ export default function Complaints({ complaints, isLoading, errMess }) {
       {
         label: 'Student Name',
         field: 'name',
-        width: 150,
+        width: 50,
         attributes: {
           'aria-controls': 'DataTable',
           'aria-label': 'Name',
@@ -18,7 +18,7 @@ export default function Complaints({ complaints, isLoading, errMess }) {
       {
         label: 'Student Id',
         field: 'sid',
-        width: 150,
+        width: 50,
       },
       {
         label: 'Title',
@@ -28,12 +28,12 @@ export default function Complaints({ complaints, isLoading, errMess }) {
       {
         label: 'Employee Id',
         field: 'eid',
-        width: 150,
+        width: 50,
       },
       {
         label: 'Complaint',
         field: 'description',
-        width: 50,
+        width: 180,
       },
 
       {

@@ -100,7 +100,7 @@ function Register() {
                 />
                 </div>
                 <div className="form-group col-md-6">
-                <label>Password</label>
+                <label>Password:</label>
                 <input
                     type="password"
                     className="form-control"
@@ -118,7 +118,7 @@ function Register() {
                 </select>
                 </div>
                 <div className="form-group col-md-6">
-                <label>branch :</label>
+                <label>Branch :</label>
                 <input
                     type="text"
                     className="form-control"

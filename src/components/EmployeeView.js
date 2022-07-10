@@ -9,21 +9,26 @@ export default function EmployeeView({ employees, isLoading, errMess }) {
       {
         label: 'Name',
         field: 'name',
-        width: 150,
+        width: 100,
         attributes: {
           'aria-controls': 'DataTable',
           'aria-label': 'Name',
         },
       },
       {
-        label: 'Email',
-        field: 'email',
-        width: 200,
+        label: 'Employee ID',
+        field: 'eid',
+        width: 100,
       },
+      // {
+      //   label: 'Email',
+      //   field: 'email',
+      //   width: 200,
+      // },
       {
         label: 'Gender',
         field: 'gender',
-        width: 150,
+        width: 100,
       },
       {
         label: 'Designation',
@@ -31,12 +36,12 @@ export default function EmployeeView({ employees, isLoading, errMess }) {
 
         width: 100,
       },
-      {
-        label: 'Join Date',
-        field: 'date',
-        sort: 'asc',
-        width: 150,
-      },
+      // {
+      //   label: 'Join Date',
+      //   field: 'date',
+      //   sort: 'asc',
+      //   width: 150,
+      // },
       {
         label: 'Mobile',
         field: 'mobile',
@@ -47,7 +52,7 @@ export default function EmployeeView({ employees, isLoading, errMess }) {
         label: 'Address',
         field: 'address',
 
-        width: 100,
+        width: 150,
       },
       {
         label: 'Actions',
