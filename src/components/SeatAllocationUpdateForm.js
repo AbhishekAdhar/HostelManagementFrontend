@@ -9,7 +9,7 @@ class SeatAllocationUpdateForm extends Component {
             id: this.props.id,
             sid: (typeof this.props.seat === 'undefined') ? '' : this.props.seat.sid,
             room: (typeof this.props.seat === 'undefined') ? '' : this.props.seat.room,
-            name: (typeof this.props.seat === 'undefined') ? '' : this.props.seat.name,
+            name: (typeof this.props.seat === 'undefined') ? '' : this.props.seat.studentName,
 
             touched: {
                 id: false,

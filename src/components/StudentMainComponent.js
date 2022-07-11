@@ -8,7 +8,7 @@ import NoticeV from './StudentNoticeV';
 import SubmitComplaint from './SubmitComplaint';
 import StudentView from './StudentsComponentView';
 import EmployeeView from './StudentEmployeeView';
-import ChangePassword from './password';
+import ChangePassword from './Password';
 
 class Student extends Component {
   constructor(props) {

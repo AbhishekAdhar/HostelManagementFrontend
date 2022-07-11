@@ -43,7 +43,7 @@ class Admin extends Component {
           room : element.room,
           mobile: element.mobileNo,
           program: element.branch,
-          gMob: element.fatherMobile,
+          reference: element.reference,
           guardian: element.fatherName,
           pAddress: element.address,
           actions: <div>
@@ -98,7 +98,7 @@ class Admin extends Component {
     let seatAllocation = [];
     this.props.seatAllocation.seatAllocation.forEach(element => {
       seatAllocation.push({
-        name: element.name,
+        name: element.studentName,
         sid : element.sid,
         room: element.room,
         actions: <div>

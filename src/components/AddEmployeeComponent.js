@@ -176,7 +176,7 @@ class AddEmployee extends Component {
                             <Col md={3}>
                                 <FormGroup>
                                     <Label for="mobile">Mobile No.</Label>
-                                    <Input required type="text" name="mobile" id="mobile" value={this.state.mobile}
+                                    <Input required type="number" name="mobile" id="mobile" value={this.state.mobile}
                                         onBlur={this.handleBlur('mobile')} onChange={this.handleInputChange}
                                         valid={errors.mobile === ''} invalid={errors.mobile !== ''} placeholder="Mobile No." />
                                     <FormFeedback>{errors.mobile}</FormFeedback>

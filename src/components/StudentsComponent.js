@@ -35,15 +35,9 @@ export default function StudentView({ students, isLoading, errMess }) {
         field: 'program',
         width: 150,
       },
-      // {
-      //   label: 'Guardian',
-      //   field: 'guardian',
-      //   sort: 'disabled',
-      //   width: 100,
-      // },
       {
-        label: 'G Mobile',
-        field: 'gMob',
+        label: 'Reference No.',
+        field: 'reference',
         sort: 'disabled',
         width: 150,
       },

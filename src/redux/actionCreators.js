@@ -117,7 +117,7 @@ export const deleteStudent = (studentId) => (dispatch) => {
                 throw error;
             })
         .then(response => response.json())
-        .then(students => { console.log('Student Deleted', students); dispatch(fetchStudents()); })
+        .then(students => { console.log('Student Deleted', students); dispatch(fetchStudents()); dispatch(fetchArchitecture()); dispatch(fetchSeatallocation());})
         .catch(error => dispatch(studentsFailed(error.message)));
 };
 
@@ -577,7 +577,7 @@ export const addseatallocation = (seatallocation) => ({
 export const postSeatallocation = (seats) => (dispatch) => {
 
     const newSeatAllocation = {
-        name: seats.name,
+        studentName: seats.name,
         sid: seats.sid,
         room: seats.room
     }
@@ -608,7 +608,7 @@ export const postSeatallocation = (seats) => (dispatch) => {
                 throw errmess;
             })
         .then(response => response.json())
-        .then(response => { alert("Seat has been alloted Successfully!!"); dispatch(addseatallocation(response)) })
+        .then(response => { alert("Seat has been alloted Successfully!!"); dispatch(addseatallocation(response)); dispatch(fetchStudents()); dispatch(fetchArchitecture()); })
         .catch(error => {
             console.log('Post seats ', error.message);
             alert('Your SealAllocation could not be added\nError: ' + error.message);
@@ -617,7 +617,7 @@ export const postSeatallocation = (seats) => (dispatch) => {
 
 export const updateSeatAllocation = (seat) => (dispatch) => {
     const newSeat = {
-        name: seat.name,
+        studentName: seat.name,
         sid: seat.sid,
         room: seat.room
     }
@@ -648,7 +648,7 @@ export const updateSeatAllocation = (seat) => (dispatch) => {
                 throw errmess;
             })
         .then(response => response.json())
-        .then(response => { dispatch(fetchSeatallocation()); alert("Seat allocation details updated!"); })
+        .then(response => { dispatch(fetchSeatallocation()); dispatch(fetchStudents()); dispatch(fetchArchitecture()); alert("Seat allocation details updated!"); })
         .catch(error => {
             console.log('Update Seat ', error.message);
             alert('Seat could not be updated\nError: ' + error.message);
@@ -678,7 +678,7 @@ export const deleteSeatAllocation = (seatId) => (dispatch) => {
                 throw error;
             })
         .then(response => response.json())
-        .then(seat => { console.log('Seat Deleted', seat); dispatch(fetchSeatallocation()); })
+        .then(seat => { console.log('Seat Deleted', seat); dispatch(fetchSeatallocation()); dispatch(fetchStudents()); dispatch(fetchArchitecture()); })
         .catch(error => dispatch(seatallocationFailed(error.message)));
 }
 
