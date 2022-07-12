@@ -20,11 +20,6 @@ export default function EmployeeView({ employees, isLoading, errMess }) {
         field: 'eid',
         width: 100,
       },
-      // {
-      //   label: 'Email',
-      //   field: 'email',
-      //   width: 200,
-      // },
       {
         label: 'Gender',
         field: 'gender',
@@ -36,12 +31,6 @@ export default function EmployeeView({ employees, isLoading, errMess }) {
 
         width: 100,
       },
-      // {
-      //   label: 'Join Date',
-      //   field: 'date',
-      //   sort: 'asc',
-      //   width: 150,
-      // },
       {
         label: 'Mobile',
         field: 'mobile',

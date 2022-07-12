@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DashBoard from './DashboardComponent';
-import { Switch, Route, Redirect, Link} from 'react-router-dom';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import LeftNav from './LeftNav';
 import EmployeeView from './EmployeeView';
 import StudentView from './StudentsComponent';
@@ -40,7 +40,7 @@ class Admin extends Component {
         students.push({
           sid: element.sid,
           name: element.studentName,
-          room : element.room,
+          room: element.room,
           mobile: element.mobileNo,
           program: element.branch,
           reference: element.reference,
@@ -63,11 +63,11 @@ class Admin extends Component {
       this.props.employees.employees.forEach(element => {
         employees.push({
           name: element.employeeName,
-        gender: element.gender,
-        eid: element.eid,
-        designation: element.designation,
-        mobile: element.mobileNo,
-        address: element.address,
+          gender: element.gender,
+          eid: element.eid,
+          designation: element.designation,
+          mobile: element.mobileNo,
+          address: element.address,
           actions: <div>
             <Link className="fa fa-pencil-alt edit mr-2" to={`/admin/updateEmployee/${element._id}`}></Link>
             <i className="fa fa-trash-alt delete" onClick={() => {
@@ -99,7 +99,7 @@ class Admin extends Component {
     this.props.seatAllocation.seatAllocation.forEach(element => {
       seatAllocation.push({
         name: element.studentName,
-        sid : element.sid,
+        sid: element.sid,
         room: element.room,
         actions: <div>
           <Link className="fa fa-pencil-alt edit mr-2" to={`/admin/updateSeatAllocation/${element._id}`}></Link>
@@ -115,9 +115,10 @@ class Admin extends Component {
     let complaints = [];
     this.props.complaints.complaints.forEach(element => {
       complaints.push({
-        name: element.name,
-        sid : element.sid,
+        sid: element.sid,
+        date: element.date.split('T')[0],
         title: element.title,
+        room: element.room,
         eid: element.eid,
         description: element.description,
         actions: <div>

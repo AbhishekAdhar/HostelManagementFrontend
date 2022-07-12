@@ -6,8 +6,8 @@ export default function ComplaintsView({ complaints }) {
   const [datatable] = React.useState({
     columns: [
       {
-        label: 'Student Name',
-        field: 'name',
+        label: 'Employee Id',
+        field: 'eid',
         width: 150,
         attributes: {
           'aria-controls': 'DataTable',
@@ -15,8 +15,8 @@ export default function ComplaintsView({ complaints }) {
         },
       },
       {
-        label: 'Student Id',
-        field: 'sid',
+        label: 'Date',
+        field: 'date',
         width: 150,
       },
       {
@@ -24,27 +24,12 @@ export default function ComplaintsView({ complaints }) {
         field: 'title',
         width: 50,
       },
-      {
-        label: 'Employee Id',
-        field: 'eid',
-        width: 150,
-      },
+
       {
         label: 'Complaint',
         field: 'description',
         width: 250,
       },
-
-      // {
-      //   label: 'Actions',
-      //   field: 'actions',
-      //   default: <div>
-      //     <i className="fa fa-check-circle resolve mr-2" onClick={() => this.toggleResolve}></i>
-      //     <i className="fa fa-trash-alt delete"></i>
-      //   </div>,
-      //   width: 100,
-      // },
-
     ],
     rows: complaints
   });

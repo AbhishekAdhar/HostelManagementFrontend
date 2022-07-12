@@ -28,6 +28,10 @@ export const updateStudent = (student) => (dispatch) => {
         fatherName: student.father,
         motherName: student.mother,
         fatherMobile: student.fnum,
+        accountNo: student.account,
+        ifscCode: student.ifsc,
+        reference: student.reference,
+
     }
     console.log('Student: ', newStudent);
 
@@ -117,7 +121,7 @@ export const deleteStudent = (studentId) => (dispatch) => {
                 throw error;
             })
         .then(response => response.json())
-        .then(students => { console.log('Student Deleted', students); dispatch(fetchStudents()); dispatch(fetchArchitecture()); dispatch(fetchSeatallocation());})
+        .then(students => { console.log('Student Deleted', students); dispatch(fetchStudents()); dispatch(fetchArchitecture()); dispatch(fetchSeatallocation()); })
         .catch(error => dispatch(studentsFailed(error.message)));
 };
 
@@ -828,5 +832,3 @@ export const deleteComplaint = (complaintId) => (dispatch) => {
         .then(complaints => { console.log('Complaint Deleted', complaints); dispatch(fetchComplaints()); })
         .catch(error => dispatch(complaintsFailed(error.message)));
 };
-
-

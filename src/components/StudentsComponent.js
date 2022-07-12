@@ -39,13 +39,13 @@ export default function StudentView({ students, isLoading, errMess }) {
         label: 'Reference No.',
         field: 'reference',
         sort: 'disabled',
-        width: 150,
+        width: 200,
       },
       {
         label: 'P. Address',
         field: 'pAddress',
         sort: 'disabled',
-        width: 100
+        width: 200
       },
       {
         label: 'Actions',

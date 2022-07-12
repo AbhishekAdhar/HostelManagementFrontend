@@ -7,18 +7,29 @@ export default function Complaints({ complaints, isLoading, errMess }) {
   const [datatable] = React.useState({
     columns: [
       {
-        label: 'Student Name',
-        field: 'name',
-        width: 50,
+        label: 'Student Id',
+        field: 'sid',
+        width: 150,
         attributes: {
           'aria-controls': 'DataTable',
           'aria-label': 'Name',
         },
       },
       {
-        label: 'Student Id',
-        field: 'sid',
-        width: 50,
+        label: 'Date',
+        field: 'date',
+        width: 150,
+
+      },
+      {
+        label: 'Room No.',
+        field: 'room',
+        width: 150,
+      },
+      {
+        label: 'Employee Id',
+        field: 'eid',
+        width: 150,
       },
       {
         label: 'Title',
@@ -26,14 +37,9 @@ export default function Complaints({ complaints, isLoading, errMess }) {
         width: 50,
       },
       {
-        label: 'Employee Id',
-        field: 'eid',
-        width: 50,
-      },
-      {
         label: 'Complaint',
         field: 'description',
-        width: 180,
+        width: 250,
       },
 
       {

@@ -59,45 +59,40 @@ function LoginForm(props) {
             errors.password = 'Password should be of minimum length of 8 characters';
         return errors;
     }
-    
+
     const errors = validate(initialState.username, initialState.password);
 
-        return (
-            <div>
-                <Card className="col-md-6 offset-md-3 mt-5 mb-5">
-                    <CardHeader className="mt-3 self-align-center"><h4 className="mt-2">Login</h4></CardHeader>
+    return (
+        <div>
+            <Card className="col-md-6 offset-md-3 mt-5 mb-5">
+                <CardHeader className="mt-3 self-align-center"><h4 className="mt-2">Login</h4></CardHeader>
 
-                    {
-                        <CardBody>
-                            <Form className="myForm" onSubmit={handleLoginClick}>
-                                <FormGroup>
-                                    <Label htmlFor="username"><h6>Username</h6></Label>
-                                    <Input required type="text" id="username" name="username" value={initialState.username}
-                                        onChange={handleInputChange} valid={errors.username === ''} invalid={errors.username !== ''} onBlur={handleBlur('username')} />
-                                    <FormFeedback>{errors.username}</FormFeedback>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Label htmlFor="password"><h6>Password</h6></Label>
-                                    <Input required type="password" id="password" name="password" value={initialState.password}
-                                        onChange={handleInputChange} valid={errors.password === ''} invalid={errors.password !== ''} onBlur={handleBlur('password')}
-                                    />
-                                    <FormFeedback>{errors.password}</FormFeedback>
-                                </FormGroup>
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" name="remember"
-                                        />
-                                        <p>Remember Me</p>
-                                    </Label>
-                                </FormGroup>
-                                <button type="submit" value="submit" className="btn btn-primary btn-md btn-block mt-2" ><span className="fa fa-sign-in-alt fa-lg"></span>Login</button>
-                            </Form>
-                        </CardBody>}
-                    {props.auth.isLoading && <Loading />}
-                    {props.auth.errMess && <div><p>{props.auth.errMess} Please try again</p></div>}
-                </Card>
-            </div>
-        )
+                {
+                    <CardBody>
+                        <Form className="myForm" onSubmit={handleLoginClick}>
+                            <FormGroup>
+                                <Label htmlFor="username"><h6>Username</h6></Label>
+                                <Input required type="text" id="username" name="username" value={initialState.username}
+                                    onChange={handleInputChange} valid={errors.username === ''} invalid={errors.username !== ''} onBlur={handleBlur('username')} />
+                                <FormFeedback>{errors.username}</FormFeedback>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="password"><h6>Password</h6></Label>
+                                <Input required type="password" id="password" name="password" value={initialState.password}
+                                    onChange={handleInputChange} valid={errors.password === ''} invalid={errors.password !== ''} onBlur={handleBlur('password')}
+                                />
+                                <FormFeedback>{errors.password}</FormFeedback>
+                            </FormGroup>
+                            <FormGroup check>
+                            </FormGroup>
+                            <button type="submit" value="submit" className="btn btn-primary btn-md btn-block mt-2" ><span className="fa fa-sign-in-alt fa-lg"></span>Login</button>
+                        </Form>
+                    </CardBody>}
+                {props.auth.isLoading && <Loading />}
+                {props.auth.errMess && <div><p>{props.auth.errMess} Please try again</p></div>}
+            </Card>
+        </div>
+    )
 }
 
 export default withRouter(LoginForm)

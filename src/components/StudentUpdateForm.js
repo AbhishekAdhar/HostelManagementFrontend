@@ -15,6 +15,9 @@ class StudentUpdateForm extends Component {
             fnum: (typeof this.props.student === 'undefined') ? '' : this.props.student.fatherMobile,
             address: (typeof this.props.student === 'undefined') ? '' : this.props.student.address,
             email: (typeof this.props.student === 'undefined') ? '' : this.props.student.email,
+            account: (typeof this.props.student === 'undefined') ? '' : this.props.student.accountNo,
+            ifsc: (typeof this.props.student === 'undefined') ? '' : this.props.student.ifscCode,
+            reference: (typeof this.props.student === 'undefined') ? '' : this.props.student.reference,
             touched: {
                 sid: false,
                 fullname: false,
@@ -24,7 +27,10 @@ class StudentUpdateForm extends Component {
                 mother: false,
                 fnum: false,
                 address: false,
-                email: false
+                email: false,
+                account: false,
+                ifsc: false,
+                reference: false,
             }
         }
     }
@@ -61,7 +67,10 @@ class StudentUpdateForm extends Component {
         father,
         fnum,
         email,
-        address
+        address,
+        account,
+        ifsc,
+        reference
     ) => {
         const errors = {
             sid: '',
@@ -72,7 +81,10 @@ class StudentUpdateForm extends Component {
             father: '',
             fnum: '',
             email: '',
-            address: ''
+            address: '',
+            account: '',
+            ifsc: '',
+            reference: ''
         }
 
         if (this.state.touched.sid && sid.length !== 8)
@@ -87,13 +99,22 @@ class StudentUpdateForm extends Component {
             errors.father = 'Name should not be greater than 30 characters and smaller than 3 characters';
         if (this.state.touched.address && (address.length < 5 || address.length > 50))
             errors.address = 'Address length should lie between 5 and 50 characters'
-        const reg = /^\d{10}$/;
-        if (this.state.touched.mobile && !reg.test(mobile))
+        if (this.state.touched.mobile && mobile.length !== 10)
             errors.mobile = 'Enter a valid Mobile Number';
-        if (this.state.touched.fnum && !reg.test(fnum))
+        if (this.state.touched.fnum && mobile.length !== 10)
             errors.fnum = 'Enter a valid Mobile Number';
         if (this.state.touched.email && email.split('').filter(x => x === '@').length !== 1)
             errors.email = 'Enter a valid email';
+
+        if (this.state.touched.account && account.length < 9 && account.length > 20)
+            errors.account = 'Account No. should be of length 9 to 20'
+
+        if (this.state.touched.ifsc && ifsc.length !== 11)
+            errors.ifsc = 'Ifsc Code should be of length 11'
+
+        if (this.state.touched.reference && reference.length < 20 && reference.length > 30)
+            errors.reference = 'Reference No. should be of length 20 to 30'
+
 
         return errors;
     }
@@ -108,7 +129,10 @@ class StudentUpdateForm extends Component {
             this.state.father,
             this.state.fnum,
             this.state.email,
-            this.state.address);
+            this.state.address,
+            this.state.account,
+            this.state.ifsc,
+            this.state.reference);
         return (
             <div>
                 <div className="row">
@@ -143,7 +167,7 @@ class StudentUpdateForm extends Component {
                         <Col md={6}>
                             <FormGroup>
                                 <Label htmlFor="mobile">Mobile No.</Label>
-                                <Input type="text" id="mobile" name="mobile"
+                                <Input type="number" id="mobile" name="mobile"
                                     value={this.state.mobile}
                                     onChange={this.handleInputChange} valid={errors.mobile === ''} invalid={errors.mobile !== ''} onBlur={this.handleBlur('mobile')} />
                                 <FormFeedback>{errors.mobile}</FormFeedback>
@@ -173,7 +197,7 @@ class StudentUpdateForm extends Component {
                         <Col md={6}>
                             <FormGroup>
                                 <Label htmlFor="fnum">Father Mobile</Label>
-                                <Input type="text" id="fnum" name="fnum"
+                                <Input type="number" id="fnum" name="fnum"
                                     value={this.state.fnum}
                                     onChange={this.handleInputChange} valid={errors.fnum === ''} invalid={errors.fnum !== ''} onBlur={this.handleBlur('fnum')} />
                                 <FormFeedback>{errors.fnum}</FormFeedback>
@@ -200,16 +224,49 @@ class StudentUpdateForm extends Component {
                             </FormGroup>
                         </Col>
                     </Row>
-                    <FormGroup>
-                        <Label htmlFor="address">P. Address</Label>
-                        <Input type="text" id="address" name="address"
-                            value={this.state.address}
-                            onChange={this.handleInputChange} valid={errors.address === ''} invalid={errors.address !== ''} onBlur={this.handleBlur('address')} />
-                        <FormFeedback>{errors.address}</FormFeedback>
-                    </FormGroup>
+                    <Row>
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label htmlFor="address">P. Address</Label>
+                                <Input type="text" id="address" name="address"
+                                    value={this.state.address}
+                                    onChange={this.handleInputChange} valid={errors.address === ''} invalid={errors.address !== ''} onBlur={this.handleBlur('address')} />
+                                <FormFeedback>{errors.address}</FormFeedback>
+                            </FormGroup>
+                        </Col>
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label htmlFor="account">Account No.</Label>
+                                <Input type="number" id="account" name="account"
+                                    value={this.state.account}
+                                    onChange={this.handleInputChange} valid={errors.account === ''} invalid={errors.account !== ''} onBlur={this.handleBlur('account')} />
+                                <FormFeedback>{errors.account}</FormFeedback>
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label htmlFor="ifsc">Ifsc Code</Label>
+                                <Input type="text" id="ifsc" name="ifsc"
+                                    value={this.state.ifsc}
+                                    onChange={this.handleInputChange} valid={errors.ifsc === ''} invalid={errors.ifsc !== ''} onBlur={this.handleBlur('ifsc')} />
+                                <FormFeedback>{errors.ifsc}</FormFeedback>
+                            </FormGroup>
+                        </Col>
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label htmlFor="reference">Reference No.</Label>
+                                <Input type="text" id="reference" name="reference"
+                                    value={this.state.reference}
+                                    onChange={this.handleInputChange} valid={errors.reference === ''} invalid={errors.reference !== ''} onBlur={this.handleBlur('reference')} />
+                                <FormFeedback>{errors.reference}</FormFeedback>
+                            </FormGroup>
+                        </Col>
+                    </Row>
                     <Button type="submit" color="primary">
                         Update
-                            </Button>
+                    </Button>
                 </Form>
             </div>
         )
