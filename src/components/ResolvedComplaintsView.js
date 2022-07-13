@@ -2,7 +2,7 @@ import React from 'react';
 import { MDBDataTableV5 } from 'mdbreact';
 import { Loading } from './LoadingComponent';
 
-export default function UnresolvedComplaints({ complaints, isLoading, errMess }) {
+export default function ResolvedComplaints({ complaints, isLoading, errMess }) {
 
   const [datatable] = React.useState({
     columns: [
@@ -19,7 +19,7 @@ export default function UnresolvedComplaints({ complaints, isLoading, errMess })
         label: 'Complaint Date',
         field: 'date',
         width: 180,
-        sort : 'asc',
+        
       },
       {
         label: 'Room No.',
@@ -30,6 +30,11 @@ export default function UnresolvedComplaints({ complaints, isLoading, errMess })
         label: 'Employee Id',
         field: 'eid',
         width: 130,
+      },
+      {
+        label: 'Resolved Date',
+        field: 'resolvedDate',
+        width: 180,
       },
       {
         label: 'Title',
@@ -52,7 +57,7 @@ export default function UnresolvedComplaints({ complaints, isLoading, errMess })
       },
 
     ],
-    rows: complaints.filter(complaint => complaint.resolved === false)
+    rows: complaints.filter(complaint => complaint.resolved === true)
   });
   if (isLoading) {
     return (<Loading />);
@@ -65,7 +70,7 @@ export default function UnresolvedComplaints({ complaints, isLoading, errMess })
       <div>
         <div className="row">
           <div className="col-12 container-fluid">
-            <h2 className="feature-heading ">Unresolved Complaints</h2>
+            <h2 className="feature-heading ">Resolved Complaints</h2>
             <hr className="feature-line" />
           </div>
         </div>

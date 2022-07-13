@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Label, Col, Row, FormGroup, FormFeedback } from 'reactstrap';
 import ComplaintsView from './StudentsComplaintsView';
+import StudentResolvedView from './StudentResolvedView';
 
 class SubmitComplaint extends Component {
     constructor(props) {
@@ -108,6 +109,9 @@ class SubmitComplaint extends Component {
                 </div>
                 <div>
                     <ComplaintsView complaints={complaint} />
+                </div>
+                <div>
+                    <StudentResolvedView complaints={complaint} />
                 </div>
             </div>
         )

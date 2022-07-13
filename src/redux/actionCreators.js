@@ -121,7 +121,7 @@ export const deleteStudent = (studentId) => (dispatch) => {
                 throw error;
             })
         .then(response => response.json())
-        .then(students => { console.log('Student Deleted', students); dispatch(fetchStudents()); dispatch(fetchArchitecture()); dispatch(fetchSeatallocation()); })
+        .then(students => { console.log('Student Deleted', students); dispatch(fetchStudents()); dispatch(fetchArchitecture()); dispatch(fetchSeatallocation());})
         .catch(error => dispatch(studentsFailed(error.message)));
 };
 
@@ -807,7 +807,6 @@ export const fetchComplaints = () => (dispatch) => {
 }
 
 export const deleteComplaint = (complaintId) => (dispatch) => {
-
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     return fetch(baseUrl + 'complaints/' + complaintId, {
@@ -830,5 +829,31 @@ export const deleteComplaint = (complaintId) => (dispatch) => {
             })
         .then(response => response.json())
         .then(complaints => { console.log('Complaint Deleted', complaints); dispatch(fetchComplaints()); })
+        .catch(error => dispatch(complaintsFailed(error.message)));
+};
+
+export const updateComplaint = (complaintId) => (dispatch) => {
+    const bearer = 'Bearer ' + localStorage.getItem('token');
+
+    return fetch(baseUrl + 'complaints/' + complaintId, {
+        method: "PUT",
+        headers: {
+            'authorization': bearer
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                return response;
+            } else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+            error => {
+                throw error;
+            })
+        .then(response => response.json())
+        .then(complaints => { console.log('Complaint Resolved', complaints); dispatch(fetchComplaints()); })
         .catch(error => dispatch(complaintsFailed(error.message)));
 };

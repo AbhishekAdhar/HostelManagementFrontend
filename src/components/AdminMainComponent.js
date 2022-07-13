@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import DashBoard from './DashboardComponent';
-import { Switch, Route, Redirect, Link } from 'react-router-dom';
+import { Switch, Route, Redirect, Link} from 'react-router-dom';
 import LeftNav from './LeftNav';
 import EmployeeView from './EmployeeView';
 import StudentView from './StudentsComponent';
 import NoticeBoard from './NoticeBoard'
 import AddEmployee from './AddEmployeeComponent';
 import Seat from './SeatComponent';
-import Complaints from './Complaints';
+import UnresolvedComplaints from './Complaints';
+import ResolvedComplaints from './ResolvedComplaintsView';
 import ArchitectureV from './StudentArchitecture';
 import StudentUpdateForm from './StudentUpdateForm';
 import EmployeeUpdateForm from './EmployeeUpdateForm';
@@ -28,7 +29,8 @@ class Admin extends Component {
       Notices: [],
       Architectures: [],
       Seats: [],
-      Complaints: []
+      Complaints: [],
+      Resolved: []
     };
   }
 
@@ -40,7 +42,7 @@ class Admin extends Component {
         students.push({
           sid: element.sid,
           name: element.studentName,
-          room: element.room,
+          room : element.room,
           mobile: element.mobileNo,
           program: element.branch,
           reference: element.reference,
@@ -62,12 +64,12 @@ class Admin extends Component {
     if (this.props.employees.employees != null) {
       this.props.employees.employees.forEach(element => {
         employees.push({
-          name: element.employeeName,
-          gender: element.gender,
-          eid: element.eid,
-          designation: element.designation,
-          mobile: element.mobileNo,
-          address: element.address,
+        name: element.employeeName,
+        gender: element.gender,
+        eid: element.eid,
+        designation: element.designation,
+        mobile: element.mobileNo,
+        address: element.address,
           actions: <div>
             <Link className="fa fa-pencil-alt edit mr-2" to={`/admin/updateEmployee/${element._id}`}></Link>
             <i className="fa fa-trash-alt delete" onClick={() => {
@@ -99,7 +101,7 @@ class Admin extends Component {
     this.props.seatAllocation.seatAllocation.forEach(element => {
       seatAllocation.push({
         name: element.studentName,
-        sid: element.sid,
+        sid : element.sid,
         room: element.room,
         actions: <div>
           <Link className="fa fa-pencil-alt edit mr-2" to={`/admin/updateSeatAllocation/${element._id}`}></Link>
@@ -115,13 +117,18 @@ class Admin extends Component {
     let complaints = [];
     this.props.complaints.complaints.forEach(element => {
       complaints.push({
-        sid: element.sid,
-        date: element.date.split('T')[0],
+        sid : element.sid,
+        date : element.date.split('.')[0],
         title: element.title,
         room: element.room,
         eid: element.eid,
         description: element.description,
+        resolved: element.resolved,
+        // resolvedDate: element.resolvedDate.split('.')[0],
         actions: <div>
+          <i className="fa fa-check-circle resolve mr-2" onClick={() => {
+            this.props.updateComplaint(element._id)
+          }}></i>
           <i className="fa fa-trash-alt delete" onClick={() => {
             if (window.confirm("Are u sure u want to delete ?"))
               this.props.deleteComplaint(element._id)
@@ -130,6 +137,28 @@ class Admin extends Component {
       })
     });
     const complaintsList = this.state.Complaints.concat(complaints);
+
+    let resolved = [];
+    this.props.complaints.complaints.forEach(element => {
+      resolved.push({
+        sid : element.sid,
+        date : element.date.split('.')[0],
+        title: element.title,
+        room: element.room,
+        eid: element.eid,
+        description: element.description,
+        resolved: element.resolved,
+        resolvedDate: element.resolvedDate.split('.')[0],
+        actions: <div>
+
+          <i className="fa fa-trash-alt delete" onClick={() => {
+            if (window.confirm("Are u sure u want to delete ?"))
+              this.props.deleteComplaint(element._id)
+          }}></i>
+        </div>
+      })
+    });
+    const ResolvedList = this.state.Resolved.concat(resolved);
 
     let architectures = [];
     this.props.architectures.architectures.forEach(element => {
@@ -146,7 +175,8 @@ class Admin extends Component {
       Notices: noticeList,
       Seats: seatAllocationList,
       Complaints: complaintsList,
-      Architectures: architectureList
+      Architectures: architectureList,
+      Resolved: ResolvedList
     });
   }
 
@@ -199,7 +229,8 @@ class Admin extends Component {
               <Route exact path="/admin/StudentManage/view" component={() => <StudentView students={this.state.Students} isLoading={this.props.students.isLoading} errMess={this.props.students.errMess} />} />
               <Route exact path="/admin/EmployeeManage/view" component={() => <EmployeeView employees={this.state.Employees} isLoading={this.props.employees.isLoading} errMess={this.props.employees.errMess} />} />
               <Route exact path="/admin/NoticeBoard" component={() => <NoticeBoard notices={this.state.Notices} postNotice={this.props.postNotice} isLoading={this.props.notices.isLoading} errMess={this.props.notices.errMess} />} />
-              <Route exact path="/admin/Complaints" component={() => <Complaints complaints={this.state.Complaints} isLoading={this.props.complaints.isLoading} errMess={this.props.complaints.errMess} />} />
+              <Route exact path="/admin/Complaints/unresolved" component={() => <UnresolvedComplaints complaints={this.state.Complaints} isLoading={this.props.complaints.isLoading} errMess={this.props.complaints.errMess} />} />
+              <Route exact path="/admin/Complaints/resolved" component={() => <ResolvedComplaints complaints={this.state.Resolved} isLoading={this.props.complaints.isLoading} errMess={this.props.complaints.errMess} />} />
               <Route exact path="/admin/StudentManage/seatallocation" component={() => <Seat seats={this.state.Seats} isLoading={this.props.seatAllocation.isLoading} errMess={this.props.seatAllocation.errMess} postSeatallocation={this.props.postSeatallocation} />} />
               <Route exact path="/admin/updateStudent/:id" component={StudentDetail} />
               <Route exact path="/admin/updateEmployee/:id" component={EmployeeDetail} />

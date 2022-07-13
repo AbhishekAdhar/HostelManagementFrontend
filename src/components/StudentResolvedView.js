@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDBDataTableV5 } from 'mdbreact';
 
-export default function ComplaintsView({ complaints }) {
+export default function StudentResolvedView({ complaints }) {
 
   const [datatable] = React.useState({
     columns: [
@@ -17,7 +17,11 @@ export default function ComplaintsView({ complaints }) {
       {
         label: 'Complaint Date',
         field: 'date',
-        sort: 'asc',
+        width: 150,
+      },
+      {
+        label: 'Resolved Date',
+        field: 'resolvedDate',
         width: 150,
       },
       {
@@ -32,7 +36,7 @@ export default function ComplaintsView({ complaints }) {
         width: 250,
       },
     ],
-    rows: complaints.filter(complaint => complaint.resolved === false)
+    rows: complaints.filter(complaint => complaint.resolved === true)
   });
   return (
     <div>

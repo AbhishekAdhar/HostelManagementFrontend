@@ -26,6 +26,7 @@ export default class LeftNav extends Component {
       ismealmanageopen: false,
       isstudentmanageopen: false,
       isemployeemanageopen: false,
+      iscomplainopen: false,
       issettingsopen: false,
       issetupopen: false,
       isstudentmanagepaymentopen: false,
@@ -36,6 +37,7 @@ export default class LeftNav extends Component {
 
     this.toggleStudentManage = this.toggleStudentManage.bind(this);
     this.toggleEmployeeManage = this.toggleEmployeeManage.bind(this);
+    this.toggleComplaint = this.toggleComplaint.bind(this)
 
     this.toggleSettings = this.toggleSettings.bind(this);
     this.toggleStudentManagePayment = this.toggleStudentManagePayment.bind(this);
@@ -56,6 +58,10 @@ export default class LeftNav extends Component {
 
   toggleEmployeeManage() {
     this.setState({ isemployeemanageopen: !this.state.isemployeemanageopen });
+  }
+
+  toggleComplaint() {
+    this.setState({ iscomplainopen : !this.state.iscomplainopen});
   }
 
   toggleSettings() {
@@ -118,8 +124,20 @@ export default class LeftNav extends Component {
                 <Link className="nav-link" to="/admin/NoticeBoard"> <i className="fa fa-newspaper-o" aria-hidden="true"></i> Notice Board</Link>
               </NavItem>
               <NavItem>
-                <Link className="nav-link" to="/admin/Complaints"><i className="fa fa-book" aria-hidden="true"></i>Complaints</Link>
+                <Link className="nav-link" id="toggler3" onClick={this.toggleComplaint} to="/admin/Complaints"> <i className="fa fa-newspaper-o" aria-hidden="true"></i> Complaints <Carrot open={this.state.iscomplainopen} /></Link>
               </NavItem>
+              <div>
+                <UncontrolledCollapse toggler="#toggler3">
+                  <NavItem>
+                    <Link className="nav-link offset-2" to="/admin/Complaints/unresolved"><i className="fa fa-eye" aria-hidden="true"></i>Unresolved</Link>
+                  </NavItem>
+                  
+                  <NavItem>
+                    <Link className="nav-link offset-2" to="/admin/Complaints/resolved"><i className="fa fa-eye" aria-hidden="true"></i>Resolved</Link>
+                  </NavItem>
+                </UncontrolledCollapse>
+              </div>
+              {/* <NavItem></NavItem> */}
             </Nav>
           </Collapse>
         </Navbar>

@@ -13,7 +13,7 @@ import Registration from "./Registration.js";
 import {
     postComplaint, postEmployee, postNotice,
     postSeatallocation, fetchArchitecture, fetchComplaints, fetchEmployees,
-     fetchNotices,  fetchSeatallocation, fetchStudents, deleteComplaint, deleteSeatAllocation,
+     fetchNotices,  fetchSeatallocation, fetchStudents, deleteComplaint, updateComplaint, deleteSeatAllocation,
     deleteEmployee, deleteNotice, deleteStudent, logoutUser, loginUser, updateStudent, updateEmployee, updateSeatAllocation,
 } from '../redux/actionCreators';
 
@@ -30,6 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
     fetchSeatallocation: () => dispatch(fetchSeatallocation()),
     fetchStudents: () => dispatch(fetchStudents()),
     deleteComplaint: (complaintId) => dispatch(deleteComplaint(complaintId)),
+    updateComplaint: (complaintId) => dispatch(updateComplaint(complaintId)),
     deleteEmployee: (employeeId) => dispatch(deleteEmployee(employeeId)),
     deleteNotice: (noticeId) => dispatch(deleteNotice(noticeId)),
     deleteStudent: (studentId) => dispatch(deleteStudent(studentId)),
@@ -104,7 +105,7 @@ class Main extends Component {
                         <Route path="/home" component={() => <Home />} />
                         <Route path="/login" component={() => <LoginForm auth={this.props.auth} loginUser={this.props.loginUser} />} />
                         <AdminRoute path="/admin" component={() => <Admin auth={this.props.auth} postNotice={this.props.postNotice} updateStudent={this.props.updateStudent} updateEmployee={this.props.updateEmployee}
-                            employees={this.props.employees} notices={this.props.notices} students={this.props.students} postStudent={this.props.postStudent}  deleteNotice={this.props.deleteNotice} deleteComplaint={this.props.deleteComplaint}
+                            employees={this.props.employees} notices={this.props.notices} students={this.props.students} postStudent={this.props.postStudent}  deleteNotice={this.props.deleteNotice} deleteComplaint={this.props.deleteComplaint} updateComplaint={this.props.updateComplaint}
                             deleteStudent={this.props.deleteStudent} deleteSeatAllocation={this.props.deleteSeatAllocation} fetchStudents={this.props.fetchStudents}  complaints={this.props.complaints} postEmployee={this.props.postEmployee} deleteEmployee={this.props.deleteEmployee}
                             fetchEmployees={this.props.fetchEmployees} seatAllocation={this.props.seatAllocation} architectures={this.props.architectures} 
                             updateSeatAllocation={this.props.updateSeatAllocation} postSeatallocation={this.props.postSeatallocation} />} />
@@ -123,5 +124,4 @@ class Main extends Component {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));;
-
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

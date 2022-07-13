@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { Navbar, NavItem, Nav, NavbarToggler, Collapse } from "reactstrap";
+import { Navbar, NavItem, Nav, NavbarToggler, Collapse} from "reactstrap";
 import { Link } from "react-router-dom";
+
 
 export default class StudentLeftNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isNavOpen: false,
+      iscomplainopen: false,
     };
     this.toggleNav = this.toggleNav.bind(this);
   }
@@ -45,14 +47,11 @@ export default class StudentLeftNav extends Component {
                   Notice Board
                 </Link>
               </NavItem>
-
               <NavItem>
-                <Link className="nav-link" to="/student/Architecture"><i className="fa fa-server" aria-hidden="true"></i>Architecture</Link>
+                <Link className="nav-link" to="/student/employeeView"> <i className="fa fa-users" aria-hidden="true"></i>Employees</Link>
               </NavItem>
               <NavItem>
-                <Link className="nav-link" to="/student/Complaints">
-                  <i className="fa fa-book" aria-hidden="true"></i>Complaints
-                </Link>
+                <Link className="nav-link" to="/student/Complaints"> <i className="fa fa-newspaper-o" aria-hidden="true"></i> Complaints</Link>
               </NavItem>
             </Nav>
           </Collapse>
