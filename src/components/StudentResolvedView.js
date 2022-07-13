@@ -42,7 +42,7 @@ export default function StudentResolvedView({ complaints }) {
     <div>
       <div className="row">
         <div className="col-12 container-fluid">
-          <h2 className="feature-heading ">Unresolved Complaints</h2>
+          <h2 className="feature-heading ">Resolved Complaints</h2>
           <hr className="feature-line" />
         </div>
       </div>
