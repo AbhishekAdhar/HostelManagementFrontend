@@ -31,7 +31,7 @@ export default function NoticeV({ notices, isLoading, errMess }) {
       <>
         <div className="row">
           <div className="col-12 container-fluid">
-            <h2 className="feature-heading ">Architecture</h2>
+            <h2 className="feature-heading ">Notice</h2>
             <hr className="feature-line" />
           </div>
 

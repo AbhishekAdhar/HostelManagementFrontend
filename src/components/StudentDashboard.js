@@ -103,7 +103,7 @@ class StudentDashBoard extends Component {
                             <CardBody>
 
                                 {
-                                    this.props.notices.map((element) => {
+                                    this.props.notices.reverse().map((element) => {
                                         return (
                                             <Alert color="primary" className="mb-1 mt-1">
                                                 <p>{element.description}</p>
